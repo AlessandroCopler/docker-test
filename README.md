@@ -14,6 +14,12 @@ To build (using another dockerfile):
 docker build ./ --file DockerfileFlask -t alessa90/public:x
 ```
 
+To see listed builded images:
+
+```
+docker image ls
+```
+
 To push:
 
 ```
