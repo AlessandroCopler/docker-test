@@ -1,0 +1,13 @@
+FROM python:3.9.6
+
+# Set the working directory in /app
+WORKDIR /app
+
+# Copy the current directory contents into the container at /app
+ADD ./fastapi /app
+
+# Install all dependencies in requirements.txt
+RUN pip install -r requirements.txt
+
+# Execute che flask app
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8080"]
