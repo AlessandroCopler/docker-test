@@ -1,0 +1,21 @@
+FROM ubuntu:20.04@sha256:bac6081102aae54ba4bcc714695b8f637e42768c7f376f374c428bab043ddc0f
+
+# update and upgrade
+RUN apt-get update -y && \
+    apt-get upgrade -y
+
+# install
+RUN apt-get install default-jre -y && \
+    apt-get install net-tools -y && \
+    apt-get install -q -y build-essential \
+                        software-properties-common \
+                        apache2-utils byobu curl git htop man ppp squid3 unzip vim w3m wget
+
+# unpack and execute netextender
+WORKDIR /home/ubuntu
+RUN mkdir -p ./netextender
+COPY ./netextender ./netextender
+WORKDIR /home/ubuntu/netextender
+RUN tar xvf NetExtender.x86_64.tgz && \
+    cd netExtenderClient && \
+    ./install
